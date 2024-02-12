@@ -44,28 +44,28 @@ for i in range(25, WIDTH-size*9, size):
         grid_objects.append(grid(i, j, size))
 
 color_objects = []
-color_objects.append(grid(1015, 25, 75, "green"))
-color_objects.append(grid(1100, 25, 75, "red"))
-color_objects.append(grid(1015, 110, 75, "blue"))
-color_objects.append(grid(1100, 110, 75, "yellow"))
-color_objects.append(grid(1015, 195, 75, "pink"))
-color_objects.append(grid(1100, 195, 75, "brown"))
-color_objects.append(grid(1015, 280, 75, "white"))
-color_objects.append(grid(1100, 280, 75, "black"))
+color_objects.append(grid(995, 25, 90, "green"))
+color_objects.append(grid(1090, 25, 90, "red"))
+color_objects.append(grid(995, 120, 90, "blue"))
+color_objects.append(grid(1090, 120, 90, "yellow"))
+color_objects.append(grid(995, 215, 90, "pink"))
+color_objects.append(grid(1090, 215, 90, "brown"))
+color_objects.append(grid(995, 310, 90, "white"))
+color_objects.append(grid(1090, 310, 90, "black"))
 
 def main():
     win.fill((13, 21, 133))
     running = True
     for obj in grid_objects:
         obj.draw()
-    py.draw.rect(win, "green", (1015, 25, 75, 75))
-    py.draw.rect(win, "red", (1100, 25, 75, 75))
-    py.draw.rect(win, "blue", (1015, 110, 75, 75))
-    py.draw.rect(win, "yellow", (1100, 110, 75, 75))
-    py.draw.rect(win, "pink", (1015, 195, 75, 75))
-    py.draw.rect(win, "brown", (1100, 195, 75, 75))
-    py.draw.rect(win, "white", (1015, 280, 75, 75))
-    py.draw.rect(win, "black", (1100, 280, 75, 75))
+    py.draw.rect(win, "green", (995, 25, 90, 90))
+    py.draw.rect(win, "red", (1090, 25, 90, 90))
+    py.draw.rect(win, "blue", (995, 120, 90, 90))
+    py.draw.rect(win, "yellow", (1090, 120, 90, 90))
+    py.draw.rect(win, "pink", (995, 215, 90, 90))
+    py.draw.rect(win, "brown", (1090, 215, 90, 90))
+    py.draw.rect(win, "white", (995, 310, 90, 90))
+    py.draw.rect(win, "black", (1090, 310, 90, 90))
 
     py.display.flip()
     color = "red"
