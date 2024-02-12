@@ -15,7 +15,7 @@ class grid():
         self.x = x
         self.y = y
         self.size = width
-        self.color = color 
+        self.color = color
 
     def draw(self):
         py.draw.rect(win, self.color, (self.x, self.y, self.size, self.size))
@@ -79,7 +79,6 @@ def main():
                         obj.color = color
                         obj.draw()                        
 
-                        py.display.update(obj.x, obj.y, obj.size, obj.size)
                 for obj in color_objects:
                     if py.Rect.collidepoint(obj.return_rect(), py.mouse.get_pos()):
                         color = obj.color
@@ -88,17 +87,13 @@ def main():
                 for obj in grid_objects:
                     if py.Rect.collidepoint(obj.return_rect(), py.mouse.get_pos()):
                         fill(obj, color, obj.color)
-                        # obj.color = "white"
-                        # obj.draw()
-                        py.display.update(obj.x, obj.y, obj.size, obj.size)
+
             if py.mouse.get_pressed()[1]:
                 for obj in grid_objects:
                     obj.color = color
                     obj.draw()
                 py.display.flip()
 
-        # for obj in grid_objects:
-        #     py.display.update(obj.x, obj.y, obj.size, obj.size)
         py.display.flip()
         clock.tick(300)
         print(clock.get_fps())
