@@ -42,6 +42,7 @@ def thickness(object):
             obj.x == object.x and obj.y == object.y + size or \
             obj.x == object.x and obj.y == object.y - size or \
             obj == object:
+            
 
             obiekty.append(obj)
     return(obiekty)
