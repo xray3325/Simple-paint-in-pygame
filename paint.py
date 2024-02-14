@@ -24,18 +24,40 @@ class grid():
         rect = py.Rect(self.x, self.y, self.size, self.size)
         return rect
 
-def fill(object, color, actual_color):
+def count(object, color, iterations):
+    if iterations > 0:
+        lista = thickness(object)
+        for obj in lista:
+            count(obj, color, iterations-1)
+    else:
+        object.color = color
+        object.draw()
+
+
+def thickness(object):
+    obiekty = []
+    for obj in grid_objects:
+        if  obj.x == object.x + size and obj.y == object.y or \
+            obj.x == object.x - size and obj.y == object.y or \
+            obj.x == object.x and obj.y == object.y + size or \
+            obj.x == object.x and obj.y == object.y - size or \
+            obj == object:
+
+            obiekty.append(obj)
+    return(obiekty)
+
+def fill(object, color, actual_color ):
     for obj in grid_objects:
         if obj.color == actual_color:
-            if obj.color != color:
-                if obj.x == object.x + size and obj.y == object.y or \
-                    obj.x == object.x - size and obj.y == object.y or \
-                    obj.x == object.x and obj.y == object.y + size or \
-                    obj.x == object.x and obj.y == object.y - size or \
-                    obj == object:
-                    obj.color = color
-                    obj.draw()
-                    fill(obj, color, actual_color)
+                if obj.color != color:
+                    if obj.x == object.x + size and obj.y == object.y or \
+                        obj.x == object.x - size and obj.y == object.y or \
+                        obj.x == object.x and obj.y == object.y + size or \
+                        obj.x == object.x and obj.y == object.y - size or \
+                        obj == object:
+                        obj.color = color
+                        obj.draw()
+                        fill(obj, color, actual_color)
 
 grid_objects = []
 size = 25
@@ -86,13 +108,12 @@ def main():
             if py.mouse.get_pressed()[2]:
                 for obj in grid_objects:
                     if py.Rect.collidepoint(obj.return_rect(), py.mouse.get_pos()):
-                        fill(obj, color, obj.color)
+                        count(obj, color, 3)
 
             if py.mouse.get_pressed()[1]:
                 for obj in grid_objects:
                     obj.color = color
                     obj.draw()
-                py.display.flip()
 
         py.display.flip()
         clock.tick(300)
