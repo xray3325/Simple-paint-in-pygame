@@ -1,7 +1,7 @@
 import pygame as py
 import sys
 
-sys.setrecursionlimit(1500)
+sys.setrecursionlimit(15000)
 
 py.init()
 
@@ -26,24 +26,25 @@ class grid():
 
 def count(object, color, iterations):
     if iterations > 0:
-        lista = thickness(object)
+        lista = thickness(object, color)
         for obj in lista:
             count(obj, color, iterations-1)
+
     else:
         object.color = color
         object.draw()
 
-
-def thickness(object):
+def thickness(object, color):
     obiekty = []
     for obj in grid_objects:
-        if  obj.x == object.x + size and obj.y == object.y or \
-            obj.x == object.x - size and obj.y == object.y or \
-            obj.x == object.x and obj.y == object.y + size or \
-            obj.x == object.x and obj.y == object.y - size or \
-            obj == object:
-            
-            obiekty.append(obj)
+            if obj.color != color:
+                if  obj.x == object.x + size and obj.y == object.y or \
+                    obj.x == object.x - size and obj.y == object.y or \
+                    obj.x == object.x and obj.y == object.y + size or \
+                    obj.x == object.x and obj.y == object.y - size or \
+                    obj == object:
+
+                    obiekty.append(obj)
     return(obiekty)
 
 def fill(object, color, actual_color ):
@@ -76,6 +77,7 @@ color_objects.append(grid(995, 310, 90, "white"))
 color_objects.append(grid(1090, 310, 90, "black"))
 
 def main():
+    fps = 200
     win.fill((13, 21, 133))
     running = True
     for obj in grid_objects:
@@ -117,6 +119,8 @@ def main():
 
         py.display.flip()
         clock.tick(300)
-        print(clock.get_fps())
+        current_fps = clock.get_fps()
+        if current_fps < fps:
+            print(fps)
     quit()
 main()
